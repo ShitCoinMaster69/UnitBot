@@ -363,12 +363,12 @@ bot.on("message", (msg) => {
     }
     myFunc();
 
-    var randomNumber = Math.floor(Math.random() * 10);
-    var randomhighnumber = Math.floor(Math.random() * 100000);
+    //   var randomNumber = Math.floor(Math.random() * 100);
+    //   var randomhighnumber = Math.floor(Math.random() * 100000);
 
-    setTimeout(() => {
-      bot.sendMessage(chatId, array[randomNumber]);
-    }, randomhighnumber);
+    //   setTimeout(() => {
+    //     bot.sendMessage(chatId, array[randomNumber]);
+    //   }, randomhighnumber);
   }
 
   if (messageText === "/fud") {
