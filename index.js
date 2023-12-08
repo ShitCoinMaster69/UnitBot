@@ -137,25 +137,28 @@ async function main() {
     unitPairContract.wethSupply = ethers.utils.formatEther(unitPair);
     wethPair.wethSupply = ethers.utils.formatEther(ethpair);
   }
-  const contractAddress = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
-
-  const abi = [
-    "function name() view returns (string)",
-    "function symbol() view returns (string)",
-    "function balanceOf(address) view returns (uint)",
-  ];
-
-  const contract = new ethers.Contract(contractAddress, abi, provider);
 
   async function getUsdt() {
+    const contractAddress = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
+
+    const abi = [
+      "function name() view returns (string)",
+      "function symbol() view returns (string)",
+      "function balanceOf(address) view returns (uint)",
+    ];
+
+    const contract = new ethers.Contract(contractAddress, abi, provider);
+
     const ethpair = await contract.balanceOf(
       "0x0d4a11d5EEaaC28EC3F61d100daF4d40471f1852"
     );
 
-    wethPair.usdSupply = (await ethers.utils.formatEther(ethpair)) * 10 ** 12;
+    wethPair.usdSupply = ethers.utils.formatEther(ethpair) * 10 ** 12;
   }
 
-  getEthPrice(), getUsdt(), getWalletBalance();
+  getEthPrice();
+  getUsdt();
+  getWalletBalance();
 
   ethPrice = (((wethPair.usdSupply / wethPair.wethSupply) * 100) / 100).toFixed(
     0
