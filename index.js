@@ -377,3 +377,5 @@ bot.on("message", (msg) => {
     bot.sendMessage(chatId, array[randomNumber]);
   }
 });
+
+console.log("Bot started");
