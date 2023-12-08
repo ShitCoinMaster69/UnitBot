@@ -170,20 +170,20 @@ async function main() {
         100) /
       100
     ).toFixed(2);
-
-    wallet1MaxTokens = maxTokens - subtractamount1;
-    wallet2MaxTokens = maxTokens - subtractamount2;
-
-    currentTokensWorth1 = unitWallet1 * unitPrice;
-    currentTokensWorth1Eth = currentTokensWorth1 / ethPrice;
-    MaxTokensworth1 = wallet1MaxTokens * unitPrice;
-    MaxTokensworth1Eth = MaxTokensworth1 / ethPrice;
-
-    currentTokensWorth2 = unitWallet2 * unitPrice;
-    currentTokensWorth2Eth = currentTokensWorth2 / ethPrice;
-    MaxTokensworth2 = wallet2MaxTokens * unitPrice;
-    MaxTokensworth2Eth = MaxTokensworth2 / ethPrice;
   });
+
+  wallet1MaxTokens = maxTokens - subtractamount1;
+  wallet2MaxTokens = maxTokens - subtractamount2;
+
+  currentTokensWorth1 = unitWallet1 * unitPrice;
+  currentTokensWorth1Eth = currentTokensWorth1 / ethPrice;
+  MaxTokensworth1 = wallet1MaxTokens * unitPrice;
+  MaxTokensworth1Eth = MaxTokensworth1 / ethPrice;
+
+  currentTokensWorth2 = unitWallet2 * unitPrice;
+  currentTokensWorth2Eth = currentTokensWorth2 / ethPrice;
+  MaxTokensworth2 = wallet2MaxTokens * unitPrice;
+  MaxTokensworth2Eth = MaxTokensworth2 / ethPrice;
 }
 var handle = null;
 bot.on("message", (msg) => {
