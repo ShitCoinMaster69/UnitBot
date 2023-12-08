@@ -156,9 +156,9 @@ async function main() {
     wethPair.usdSupply = ethers.utils.formatEther(ethpair) * 10 ** 12;
   }
 
-  await getEthPrice();
-  await getUsdt();
-  await getWalletBalance();
+  getEthPrice();
+  getUsdt();
+  getWalletBalance();
 
   ethPrice = (((wethPair.usdSupply / wethPair.wethSupply) * 100) / 100).toFixed(
     0
