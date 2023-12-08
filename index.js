@@ -156,21 +156,17 @@ async function main() {
     wethPair.usdSupply = ethers.utils.formatEther(ethpair) * 10 ** 12;
   }
 
-  let promises = [getEthPrice(), getUsdt(), getWalletBalance()];
+  getEthPrice(), getUsdt(), getWalletBalance();
 
-  Promise.all(promises).then(() => {
-    ethPrice = (
-      ((wethPair.usdSupply / wethPair.wethSupply) * 100) /
-      100
-    ).toFixed(0);
+  ethPrice = (((wethPair.usdSupply / wethPair.wethSupply) * 100) / 100).toFixed(
+    0
+  );
 
-    unitPrice = (
-      (((unitPairContract.wethSupply * ethPrice) /
-        unitPairContract.unitSupply) *
-        100) /
-      100
-    ).toFixed(2);
-  });
+  unitPrice = (
+    (((unitPairContract.wethSupply * ethPrice) / unitPairContract.unitSupply) *
+      100) /
+    100
+  ).toFixed(2);
 
   wallet1MaxTokens = maxTokens - subtractamount1;
   wallet2MaxTokens = maxTokens - subtractamount2;
