@@ -17,6 +17,9 @@ var unitWallet2 = Number;
 var subtractamount1 = 0;
 var subtractamount2 = 0;
 
+var soldTokenAmount1 = 0;
+var soldTokenAmount2 = 0;
+
 var tokenName = String;
 
 var unitPairContract = {
@@ -81,6 +84,42 @@ async function main() {
       let store = await Number(ethers.utils.formatEther(filter1));
 
       subtractamount1 = newSubtract1 + store;
+    }
+
+    const tokensSold1 = await unitContract.queryFilter(
+      unitContract.filters.Transfer(
+        "0x80f5666a6fe5c51739dc99b55463d5b098ffc10a",
+        wallet1
+      )
+    );
+
+    soldTokenAmount1 = 0;
+
+    for (var i = 0; i < tokensSold1.length; i++) {
+      const NewsoldTokenAmount1 = soldTokenAmount1;
+
+      const filter1 = await tokensSold1[i].args.value.toString();
+      let store = await Number(ethers.utils.formatEther(filter1));
+
+      soldTokenAmount1 = NewsoldTokenAmount1 + store;
+    }
+
+    const tokensSold2 = await unitContract.queryFilter(
+      unitContract.filters.Transfer(
+        "0x80f5666a6fe5c51739dc99b55463d5b098ffc10a",
+        wallet2
+      )
+    );
+
+    soldTokenAmount2 = 0;
+
+    for (var i = 0; i < tokensSold2.length; i++) {
+      const NewsoldTokenAmount2 = soldTokenAmount2;
+
+      const filter1 = await tokensSold2[i].args.value.toString();
+      let store = await Number(ethers.utils.formatEther(filter1));
+
+      soldTokenAmount2 = NewsoldTokenAmount1 + store;
     }
 
     const sex2 = await unitContract.queryFilter(
@@ -325,10 +364,18 @@ bot.on("message", (msg) => {
           currentTokensWorth1.toFixed(0) +
           " )\n\n" +
           "Unreleased: " +
-          (18000 - parseInt(unitWallet1) - subtractamount1).toFixed(0) +
+          (
+            18000 -
+            Math.round(unitWallet1) -
+            subtractamount1 +
+            soldTokenAmount1
+          ).toFixed(0) +
           " ( $" +
           (
-            (18000 - parseInt(unitWallet1) - subtractamount1) *
+            (18000 -
+              parseInt(unitWallet1) -
+              subtractamount1 +
+              soldTokenAmount1) *
             unitPrice
           ).toFixed(0) +
           " )\n" +
@@ -344,10 +391,18 @@ bot.on("message", (msg) => {
           currentTokensWorth2.toFixed(0) +
           " )\n\n" +
           "Unreleased: " +
-          (18000 - parseInt(unitWallet2) - subtractamount2).toFixed(0) +
+          (
+            18000 -
+            Math.round(unitWallet2) -
+            subtractamount2 +
+            soldTokenAmount2
+          ).toFixed(0) +
           " ( $" +
           (
-            (18000 - parseInt(unitWallet2) - subtractamount2) *
+            (18000 -
+              parseInt(unitWallet2) -
+              subtractamount2 +
+              soldTokenAmount2) *
             unitPrice
           ).toFixed(0) +
           " )\n" +
@@ -365,7 +420,7 @@ bot.on("message", (msg) => {
 
       bot.sendMessage(
         chatId,
-        ` Call took ${Math.round(endTime - startTime)} milliseconds`
+        `Call took ${Math.round(endTime - startTime)} milliseconds`
       );
     }
     myFunc();
