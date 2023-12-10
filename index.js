@@ -357,7 +357,7 @@ bot.on("message", (msg) => {
           (MaxTokensworth1 + MaxTokensworth2).toFixed(0) +
           "   ( " +
           (MaxTokensworth1Eth + MaxTokensworth2Eth).toFixed(2) +
-          "ETH )\n\n\n" +
+          "ETH )\n\n" +
           "👥 Each :    $" +
           Math.round(((wallet1MaxTokens + wallet2MaxTokens) / 6) * unitPrice) +
           "\n\n" +
