@@ -292,9 +292,10 @@ bot.on("message", (msg) => {
   if (messageText === "/unit") {
     console.log("Someone called unit");
     async function myFunc() {
+      var startTime = performance.now();
       await main();
 
-      bot.sendMessage(
+      await bot.sendMessage(
         chatId,
 
         "💰 Unit: $" +
@@ -359,6 +360,12 @@ bot.on("message", (msg) => {
           "<a href='https://dexscreener.com/ethereum/0x80f5666a6fe5c51739dc99b55463d5b098ffc10a'>DexScreener</a> | " +
           "<a href='https://etherscan.io/address/0x1e241521f4767853b376c2fe795a222a07d588ee'>Etherscan</a>     ",
         { parse_mode: "HTML", disable_web_page_preview: true }
+      );
+      var endTime = performance.now();
+
+      bot.sendMessage(
+        chatId,
+        ` Call took ${Math.round(endTime - startTime)} milliseconds`
       );
     }
     myFunc();
