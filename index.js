@@ -358,6 +358,8 @@ bot.on("message", (msg) => {
           "   ( " +
           (MaxTokensworth1Eth + MaxTokensworth2Eth).toFixed(2) +
           "ETH )\n\n\n" +
+          "👥 Each :   " +
+          (wallet1MaxTokens + wallet2MaxTokens) / 6 +
           "1️⃣ Wallet 1:         " +
           Math.floor(unitWallet1) +
           " Tokens ( $" +
